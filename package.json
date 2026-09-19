@@ -6,9 +6,9 @@
   "license": "GPL-3.0",
   "private": false,
   "scripts": {
-    "build": "tsc && node dist/src/build-site.js",
+    "build": "tsc && node dist/build-site.js",
     "examples": "python tools/wikisource.py",
-    "gen-constants": "tsc && node dist/src/utils/gen-constants.js",
+    "gen-constants": "tsc && node dist/utils/gen-constants.js",
     "lint": "eslint src"
   },
   "devDependencies": {
