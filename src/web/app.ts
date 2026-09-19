@@ -38,15 +38,30 @@ const SHORT_ROOM = 64;
 type Engine = { binding: GMPFunctions; N: mpz_ptr; C: mpz_ptr; I: mpz_ptr };
 let engine: Promise<Engine> | null = null;
 
+// Mobile connections drop large downloads; try a few times before giving up
+async function fetchText(url: string, tries = 3): Promise<string> {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      const res = await fetch(url);
+      if (res.status === 404) throw Object.assign(new Error("not found"), { missing: true });
+      if (!res.ok) throw new Error(`${res.status}`);
+      return await res.text();
+    } catch (e) {
+      if ((e as { missing?: boolean }).missing || attempt >= tries) throw e;
+      await new Promise((r) => setTimeout(r, 1000 * attempt));
+    }
+  }
+}
+
 function loadEngine(): Promise<Engine> {
   engine ??= (async () => {
-    const [{ binding }, numbers] = await Promise.all([
-      gmpInit(),
-      fetch("data/numbers.txt").then((r) => r.text()),
-    ]);
+    const [{ binding }, numbers] = await Promise.all([gmpInit(), fetchText("data/numbers.txt")]);
     const { N, C, I } = await initialiseNumbers(binding, numbers);
     return { binding, N, C, I };
-  })();
+  })().catch((e) => {
+    engine = null; // let the next attempt start over
+    throw e;
+  });
   return engine;
 }
 
@@ -94,10 +109,17 @@ async function roomFor(token: string): Promise<string> {
   }
   if (token.startsWith("x-")) {
     if (!exampleRooms.has(token)) {
-      exampleRooms.set(token, fetch(`data/rooms/${token.slice(2)}.txt`).then((r) => {
-        if (!r.ok) throw new Error("لا يوجد مثال بهذا الاسم.");
-        return r.text().then((t) => t.trim());
-      }));
+      const room = fetchText(`data/rooms/${token.slice(2)}.txt`)
+        .then((t) => t.trim())
+        .catch((e) => {
+          exampleRooms.delete(token);
+          throw new Error(
+            (e as { missing?: boolean }).missing
+              ? "لا يوجد مثال بهذا الاسم."
+              : "انقطع تحميل رقم الغرفة. تأكد من اتصالك وأعد تحميل الصفحة."
+          );
+        });
+      exampleRooms.set(token, room);
     }
     return exampleRooms.get(token) as Promise<string>;
   }
@@ -293,7 +315,7 @@ function markSearch(pre: HTMLElement, spec: string) {
 
 // Arabic glyphs have no fixed width, so matches are wrapped in <mark>
 async function highlightWords(pre: HTMLElement) {
-  const words = (await (await fetch("words.txt")).text())
+  const words = (await fetchText("words.txt"))
     .split("\n")
     .map((w) => w.trim())
     .filter((w) => w.length > 1)
@@ -340,7 +362,7 @@ function initSearch() {
     button.disabled = true;
     button.textContent = "لحظة...";
     try {
-      if (mode === "words") setPopularWords(await (await fetch("words.txt")).text());
+      if (mode === "words") setPopularWords(await fetchText("words.txt"));
       const { binding, I, N } = await loadEngine();
 
       let book = "";
@@ -402,7 +424,7 @@ function initExamples() {
       const { addresses, slug } = button.dataset;
       const volumes = JSON.parse(addresses as string) as { file: string; place: string }[];
       button.disabled = true;
-      const rooms = await Promise.all(volumes.map((v) => fetch(`data/rooms/${v.file}.txt`).then((r) => r.text())));
+      const rooms = await Promise.all(volumes.map((v) => fetchText(`data/rooms/${v.file}.txt`)));
       download(`${slug}-address.txt`, rooms.map((r, i) => `${r.trim()}.${volumes[i].place}.1`).join("\n"), "text/plain");
       button.disabled = false;
     };
