@@ -1,3 +1,32 @@
+# babel (Arabic edition)
+
+Arabic edition by [Murtadha Najem](https://github.com/murtadha203), built on [tdjsnelling/babel](https://github.com/tdjsnelling/babel) and released under the same licence (GPL-3.0).
+
+This fork writes the library in Arabic: 42 symbols (28 letters, ء آ أ إ ؤ ئ ة ى, ، . ؟ ! - and space), so there are 42^1,312,000 books. What changed from upstream:
+
+* `src/constants.ts`: the alphabet, GMP's digit set for bases above 36, and `normaliseArabic` (strips tashkeel, folds Persian ی ک and Latin , ?).
+* `numbers`: N, C and I regenerated for base 42 with `src/utils/gen-constants.ts`.
+* `src/shape.ts`: joins Arabic letters for the PDF by table (Presentation Forms-B), since fontkit's OpenType shaping took two minutes per book.
+* `src/pdf.ts`: books are set right to left in Amiri (`src/public/font/Amiri-Regular.ttf`, SIL Open Font License, see `Amiri-OFL.txt`).
+* `src/public/words.txt`: common Arabic words for the "random words" search and word highlighting.
+* Every page is translated and right to left. The story page keeps the English translation with an Arabic introduction.
+* The site is static and runs on GitHub Pages: `src/web/app.ts` computes every page in the browser with gmp-wasm, so the Koa server, its bookmark store and the Dockerfile are gone. A room reached by search or at random is kept in the visitor's browser (IndexedDB), because a room number is too long for a link; pages are shared by bookmark file or full address.
+* Examples: `/examples.html` lists complete real texts found in the library, grouped by category. Each is a file in `src/examples` plus an entry in `src/examples/index.json`; its location is searched at build time. `tools/wikisource.py` builds them from Arabic Wikisource and the OpenITI corpus, as listed in `tools/books.json`.
+
+To build and preview:
+
+```
+npm install
+npm run build          # writes ./site
+python tools/serve.py  # http://localhost:3107/babel-arabic/
+```
+
+Pushing to `main` publishes `./site` through `.github/workflows/pages.yml`.
+
+The upstream README follows.
+
+---
+
 # babel
 
 A functional, complete, true-to-scale re-creation of the [Library of Babel](https://en.wikipedia.org/wiki/The_Library_of_Babel) [[.pdf](https://libraryofbabel.app/pdf/Borges-The-Library-of-Babel.pdf)].

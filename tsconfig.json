@@ -107,11 +107,10 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": [
-    "src/**/*",
-    "node_modules/popular-english-words/index.js",
-    "node_modules/popular-english-words/words.js"
+    "src/**/*"
   ],
   "exclude": [
-    "src/public"
+    "src/public",
+    "src/web"
   ]
 }

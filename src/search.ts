@@ -1,6 +1,20 @@
-// @ts-ignore
-import { words } from "popular-english-words";
-import { ALPHA, CHARS, LINES, PAGES } from "./constants";
+import { ALPHA, CHARS, LINES, PAGES, normaliseArabic } from "./constants";
+
+// Folds text onto the library's symbols and drops the rest, keeping line breaks
+export const sanitiseContent = (content: string) =>
+  normaliseArabic(content)
+    .split("")
+    .filter((c) => ALPHA.includes(c) || c === "\n" || c === "\r")
+    .join("");
+
+// Common Arabic words (src/public/words.txt), for the "random words" mode
+let popularWords: string[] = [];
+export const setPopularWords = (text: string) => {
+  popularWords = text
+    .split("\n")
+    .map((w) => w.trim())
+    .filter(Boolean);
+};
 
 // Precompute for fast membership checks
 const allowed = new Set(ALPHA);
@@ -23,7 +37,9 @@ export const getEmptyBookContent = (content: string) => {
   for (let li = 0; li < lines.length; li++) {
     const line = lines[li] ?? "";
     let out = "";
-    for (let i = 0; i < line.length + (CHARS - (line.length % CHARS)); i++) {
+    // pad to whole rows; a line of exactly 80 characters takes one row, not two
+    const rows = Math.max(1, Math.ceil(line.length / CHARS));
+    for (let i = 0; i < rows * CHARS; i++) {
       const c = line[i] ?? " ";
       out += allowed.has(c) ? c : " ";
     }
@@ -53,7 +69,9 @@ export const getEmptyPageBookContent = (content: string) => {
   for (let li = 0; li < LINES; li++) {
     const line = lines[li] ?? "";
     let out = "";
-    for (let i = 0; i < line.length + (CHARS - (line.length % CHARS)); i++) {
+    // pad to whole rows; a line of exactly 80 characters takes one row, not two
+    const rows = Math.max(1, Math.ceil(line.length / CHARS));
+    for (let i = 0; i < rows * CHARS; i++) {
       const c = line[i] ?? " ";
       out += allowed.has(c) ? c : " ";
     }
@@ -98,8 +116,6 @@ export const getRandomCharsBookContent = (content: string) => {
 };
 
 export const getRandomWordsBookContent = (content: string) => {
-  const popularWords = words.getMostPopular(5000) as string[];
-
   const randomStartPosition =
     Math.floor(
       Math.random() * (PAGES * LINES * CHARS - content.length + 1) +

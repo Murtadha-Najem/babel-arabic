@@ -1,6 +1,2 @@
 User-agent: *
-Disallow: /ref/
-Disallow: /fullref/
-Disallow: /bookmark/
-Disallow: /pdf/
-Disallow: /random
+Allow: /

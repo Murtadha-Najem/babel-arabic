@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang="ar", dir="rtl")
     include includes/head.pug
     +seo()
 
@@ -7,72 +7,61 @@ html(lang="en")
         include includes/nav.pug
 
         main.BodyStyle
-            img.Librarian(src="/image/librarian-5.png", alt="A bearded man in a hooded robe sat studying a book in the style of the artist Alphonse Mucha")
+            img.Librarian(src="image/librarian-5.png", alt="رجل ملتح بعباءة ذات قلنسوة يقرأ كتابا، بأسلوب الفنان ألفونس موشا")
 
             p.initial
-                span The
-                |
-                |
-                a(href="/the-library-of-babel") Library of Babel
+                span مكتبة بابل
                 |
                 | (
-                a(href="/pdf/Borges-The-Library-of-Babel.pdf", target="_blank") pdf
-                | ) is a short story by
+                a(href="story.html") نص القصة
+                | )
+                | قصة قصيرة للكاتب الأرجنتيني
                 |
-                a(href="https://en.wikipedia.org/wiki/Jorge_Luis_Borges", target="_blank") Jorge Luis Borges
-                |
-                | first published in 1941.
+                a(href="https://ar.wikipedia.org/wiki/خورخي_لويس_بورخيس", target="_blank") خورخي لويس بورخيس
+                | ، نُشرت أول مرة سنة ١٩٤١.
 
-            p It describes a library made up of an “indefinite, perhaps infinite” number hexagonal of rooms, each lined on four sides by a bookshelf of five shelves, each self containing thirty-two books. Each book is four hundred and ten pages of forty lines, each line of eighty characters.
-            p In the story, each book is made up of “twenty-five orthographic symbols” consisting of twenty-two lowercase letters, the comma, the full-stop, and the space. This website expands that to thirty-two symbols: the twenty-six lower-case letters of the English alphabet, the comma, full-stop, exclamation mark, question mark, hyphen, and space.
-            p In its pages, the library contains every possible combination of these characters. No two books are the same — meaning that the library is “total — perfect, complete, and whole”. Everything that ever has been, or ever will be written using these thirty-two characters is contained somewhere within the library.
+            p تصف القصة مكتبة مؤلفة من عدد لا يُحصى من الغرف السداسية. على أربعة من جدران كل غرفة رفوف، وفي كل جدار خمسة رفوف، وعلى كل رف اثنان وثلاثون كتابا. كل كتاب أربعمئة وعشر صفحات، وكل صفحة أربعون سطرا، وكل سطر ثمانون حرفا.
 
-            p This is a re-creation of the library, explorable from your web browser. It is the only
-                |
-                |
-                em complete
-                |
-                | re-creation of the Library of Babel, in that it contains every single unique book — not just every unique page.
+            p في قصة بورخيس تُكتب الكتب بخمسة وعشرين رمزا. هذه النسخة عربية، وحروفها اثنان وأربعون رمزا: الحروف العربية الثمانية والعشرون، والهمزة وصورها (ء آ أ إ ؤ ئ)، والتاء المربوطة، والألف المقصورة، والفاصلة، والنقطة، وعلامة الاستفهام، وعلامة التعجب، والشرطة، والمسافة.
 
-            p You can get started by browsing the library from
-                |
-                |
-                a(href="/ref/1.1.1.1.1") the beginning
-                |, from a
-                |
-                a(href="/random") random page
-                |, or by
-                |
-                a(href="/search") searching for some text
-                |.
+            p تحتوي صفحات المكتبة كل ترتيب ممكن لهذه الرموز، ولا يتكرر فيها كتاب. كل ما كُتب أو سيُكتب بهذه الحروف موجود في مكان ما منها: كل قصيدة، وكل رسالة، وكل كتاب لم يؤلفه أحد بعد.
 
-            p So far,
+            p ابدأ من
                 |
                 |
-                strong #{bookmarkCount.toLocaleString()} unique rooms
+                a(href="page.html#1.1.1.1.1") الصفحة الأولى
+                | ، أو افتح
                 |
-                | have been visited out of roughly
+                a(href="page.html#random") صفحة عشوائية
+                | ، أو
                 |
+                a(href="search.html") ابحث عن نص
+                | . وفي صفحة
                 |
-                span.nobreak 10
-                    span.super 197,473
+                a(href="examples.html") الأمثلة
                 |
-                | total rooms.
+                | نصوص حقيقية كاملة وجدناها في المكتبة، أولها القرآن الكريم.
 
-            p Try searching for your name, your date of birth, or maybe a line from your favourite song or poem. Search for a paragraph from a book, perhaps a book that is yet to be written.
+            p في المكتبة قرابة
+                |
+                |
+                span.nobreak(dir="ltr") 10
+                    span.super 2,129,700
+                |
+                | غرفة
+                - if (bookmarkCount > 0)
+                    | . زار الناس منها حتى الآن
+                    |
+                    |
+                    strong #{bookmarkCount.toLocaleString("ar")} غرفة
+                | .
 
-            p Please see the
+            p جرّب أن تبحث عن اسمك، أو عن بيت شعر تحبه، أو عن فقرة من كتاب لم يُكتب بعد.
+
+            p لتعرف كيف تعمل المكتبة، اقرأ
                 |
                 |
-                a(href="/about") about page
-                |
-                | and the
-                |
-                a(href="https://github.com/tdjsnelling/babel", target="_blank") GitHub repository
-                |
-                | for a more technical explanation of how this site works and to view the source code. For any feedback, please get in touch via the GitHub repo or at
-                |
-                a(href="mailto:babel@tdjs.dev", target="_blank") babel@tdjs.dev
-                |.
+                a(href="about.html") صفحة الشرح
+                | .
 
         include includes/footer.pug

@@ -1,0 +1,152 @@
+[
+  {
+    "slug": "arbaun-nawawiyya",
+    "title": "الأربعون النووية",
+    "category": "كتب دينية",
+    "description": "أربعون حديثا ونيف جمعها الإمام النووي في أصول الدين.",
+    "page": "الأربعون النووية",
+    "dropSections": [
+      "شرح وفوائد الحديث"
+    ]
+  },
+  {
+    "slug": "sahih-bukhari",
+    "title": "صحيح البخاري",
+    "category": "كتب دينية",
+    "description": "أصح كتب الحديث عند أهل السنة، جمعه الإمام البخاري.",
+    "page": "صحيح البخاري",
+    "follow": "subpages"
+  },
+  {
+    "slug": "muallaqat",
+    "title": "المعلقات العشر",
+    "category": "شعر",
+    "description": "أشهر قصائد العرب قبل الإسلام، لعشرة شعراء.",
+    "page": "المعلقات",
+    "pages": [
+      "معلقة امرئ القيس",
+      "معلقة طرفة بن العبد",
+      "معلقة زهير بن أبي سلمى",
+      "معلقة لبيد بن ربيعة",
+      "معلقة عمرو بن كلثوم",
+      "معلقة عنترة بن شداد",
+      "معلقة الحارث بن حلزة اليشكري",
+      "معلقة الأعشى",
+      "معلقة النابغة الذبياني",
+      "معلقة عبيد الأبرص"
+    ]
+  },
+  {
+    "slug": "diwan-mutanabbi",
+    "title": "ديوان المتنبي",
+    "category": "شعر",
+    "description": "شعر أبي الطيب المتنبي، مرتبا على مطالع القصائد كما في ويكي مصدر.",
+    "page": "مؤلف:المتنبي",
+    "follow": "all",
+    "section": "== قصائد =="
+  },
+  {
+    "slug": "bukhala",
+    "title": "البخلاء",
+    "category": "أدب ونثر",
+    "description": "نوادر البخلاء وأخبارهم بقلم الجاحظ الساخر.",
+    "page": "البخلاء"
+  },
+  {
+    "slug": "bayan-wa-tabyin",
+    "title": "البيان والتبيين",
+    "category": "أدب ونثر",
+    "description": "كتاب الجاحظ في البلاغة والخطابة وأخبار البلغاء.",
+    "page": "البيان والتبيين"
+  },
+  {
+    "slug": "risalat-al-ghufran",
+    "title": "رسالة الغفران",
+    "category": "أدب ونثر",
+    "description": "رحلة خيالية لأبي العلاء المعري إلى الجنة والنار يحاور فيها الشعراء.",
+    "page": "رسالة الغفران",
+    "follow": "subpages"
+  },
+  {
+    "slug": "alf-layla",
+    "title": "ألف ليلة وليلة",
+    "category": "أدب ونثر",
+    "description": "حكايات شهرزاد كاملة، في طبعة بولاق كما نشرتها هنداوي.",
+    "page": "ألف ليلة وليلة",
+    "openiti": [
+      "https://raw.githubusercontent.com/OpenITI/1300AH/master/data/1300Anonymous/1300Anonymous.AlfLaylaWaLayla/1300Anonymous.AlfLaylaWaLayla.Hindawi0061961973Vols-ara1"
+    ],
+    "source": "مشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/1300AH"
+  },
+  {
+    "slug": "hayy-ibn-yaqzan",
+    "title": "حي بن يقظان",
+    "category": "فلسفة وفكر",
+    "description": "قصة ابن طفيل الفلسفية عن إنسان نشأ وحده على جزيرة فعرف الحقيقة بعقله.",
+    "page": "حي بن يقظان"
+  },
+  {
+    "slug": "tahafut-al-falasifa",
+    "title": "تهافت الفلاسفة",
+    "category": "فلسفة وفكر",
+    "description": "رد الغزالي على الفلاسفة في عشرين مسألة.",
+    "page": "تهافت الفلاسفة",
+    "pages": [
+      "تهافت الفلاسفة/مقدمة"
+    ],
+    "openiti": [
+      "https://raw.githubusercontent.com/OpenITI/0525AH/master/data/0505Ghazali/0505Ghazali.Tahafut/0505Ghazali.Tahafut.Shamela0011055-ara1"
+    ],
+    "source": "ويكي مصدر ومشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/0525AH"
+  },
+  {
+    "slug": "bidaya-wa-nihaya",
+    "title": "البداية والنهاية",
+    "category": "تاريخ",
+    "description": "تاريخ ابن كثير من بدء الخلق إلى عصره، في أربعة عشر جزءا.",
+    "page": "البداية والنهاية",
+    "openiti": [
+      "https://raw.githubusercontent.com/OpenITI/0775AH/master/data/0774IbnKathir/0774IbnKathir.Bidaya/0774IbnKathir.Bidaya.Shamela0004445-ara1.completed"
+    ],
+    "source": "مشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/0775AH"
+  },
+  {
+    "slug": "aghani",
+    "title": "الأغاني",
+    "category": "أدب ونثر",
+    "description": "موسوعة أبي الفرج الأصفهاني في أخبار الشعراء والمغنين، في أربعة وعشرين جزءا.",
+    "page": "الأغاني",
+    "openiti": [
+      "https://raw.githubusercontent.com/OpenITI/0375AH/master/data/0362AbuFarajIsbahani/0362AbuFarajIsbahani.Aghani/0362AbuFarajIsbahani.Aghani.JK000927-ara1.completed"
+    ],
+    "source": "مشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/0375AH"
+  },
+  {
+    "slug": "tahafut-al-tahafut",
+    "title": "تهافت التهافت",
+    "category": "فلسفة وفكر",
+    "description": "رد ابن رشد على الغزالي دفاعا عن الفلسفة.",
+    "page": "تهافت التهافت",
+    "openiti": [
+      "https://raw.githubusercontent.com/OpenITI/0600AH/master/data/0595IbnRushdHafid/0595IbnRushdHafid.TahafudTahafud/0595IbnRushdHafid.TahafudTahafud.DARE00025-ara1"
+    ],
+    "source": "مشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/0600AH"
+  },
+  {
+    "slug": "mafatih-al-jinan",
+    "title": "مفاتيح الجنان",
+    "category": "كتب دينية",
+    "description": "كتاب الأدعية والزيارات للشيخ عباس القمي، بنصه المعرب.",
+    "page": "مفاتيح الجنان",
+    "openiti": [
+      "https://raw.githubusercontent.com/OpenITI/1375AH/master/data/1359CabbasQummi/1359CabbasQummi.MafatihJinan/1359CabbasQummi.MafatihJinan.Zaydiyya0000236-ara1"
+    ],
+    "source": "مشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/1375AH"
+  }
+]

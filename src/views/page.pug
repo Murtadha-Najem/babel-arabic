@@ -1,61 +1,48 @@
 doctype html
-html(lang="en")
-    - const idString = `Room ${info.roomShort} / Wall ${info.wall} / Shelf ${info.shelf} / Book ${info.book} / Page ${info.page}`
-
+html(lang="ar", dir="rtl")
     include includes/head.pug
-    +seo(`${idString} — Browse the Library`)
+    +seo("تصفح المكتبة")
 
-    - if (prevPage !== null)
-        link(rel="prefetch", href=`/ref/${prevPage}`)
-    - if (nextPage !== null)
-        link(rel="prefetch", href=`/ref/${nextPage}`)
-
-    body
+    //- src/web/app.ts computes the page named in the URL fragment and fills this in
+    body(data-page="page")
         include includes/nav.pug
 
         main
             div.PageInfo
-                pre=idString
-                a.nobreak(href=`/fullref/${info.uid}.${info.wall}.${info.shelf}.${info.book}.${info.page}`, target="_blank") Full reference
-
+                p الغرفة ... / الجدار ... / الرف ... / الكتاب ... / الصفحة ...
+                a.nobreak.FullAddress(href="#") نزّل العنوان الكامل
 
             div.PageActions
-                button.Button(onclick="highlightWords()") Highlight English words
-                a.noexternal(href=`/bookmark/${info.uid}.${info.wall}.${info.shelf}.${info.book}.${info.page}`)
-                    button.Button Download bookmark
-                a.noexternal(href=`/pdf/${info.uid}.${info.wall}.${info.shelf}.${info.book}`, target="_blank")
-                    button.Button Download this book as a PDF
+                button.Button.HighlightWords(type="button") ظلّل الكلمات العربية
+                button.Button.DownloadBookmark(type="button") نزّل علامة الصفحة
+                button.Button.DownloadPdf(type="button") نزّل الكتاب كاملا (PDF)
+
+            p.PageStatus(aria-live="polite") لحظة، المكتبة تحسب هذه الصفحة...
 
             div.PageContentWrapper
                 div.PageContent
                     div.Lines
-                        each line, index in lines
-                            - const i = index + 1
-                            span #{i < 10 ? `0${i}` : i}
-                    pre #{lines.join('\n')}
+                        - let n = 1
+                        while n <= 40
+                            span= n < 10 ? `0${n}` : n
+                            - n++
+                    pre.Loading
 
             div.PageNavigation
-                - if (prevPage !== null)
-                    a(href=`/ref/${prevPage}`) &larr; Previous
-                - else
-                    div
+                a.Prev(href="#") &rarr; السابقة
 
                 div.PageSelector
-                    p Page
-                    - let p = 0
+                    p الصفحة
+                    - let p = 1
                     select
-                        while p < 410
-                            - const selected = parseInt(p) + 1 === parseInt(info.page)
-                            option(value=(p + 1), selected=selected)= p + 1
+                        while p <= 410
+                            option(value=p)= p
                             - p++
 
-                - if (nextPage !== null)
-                    a(href=`/ref/${nextPage}`) Next &rarr;
-                - else
-                    div
+                a.Next(href="#") التالية &larr;
+
+            p.ShareNote روابط الصفحات التي تصل إليها بالبحث أو عشوائيا تُحفظ في متصفحك وحده، لأن رقم الغرفة أطول من أن يوضع في رابط. لتشاركها مع غيرك نزّل علامة الصفحة أو عنوانها الكامل، ويفتحها من صفحة التصفح.
 
         include includes/footer.pug
 
-    script(src="/js/highlightText.js", type="text/javascript")
-    script(src="/js/pageSelector.js", type="text/javascript")
-    script(src="/js/words.js", type="text/javascript")
+    script(type="module", src=`js/app.js?v=${assetVersion}`)

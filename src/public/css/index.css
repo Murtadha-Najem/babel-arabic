@@ -530,3 +530,591 @@ button[disabled] {
   background-color: var(--colour-border);
   z-index: -1;
 }
+
+/*
+  Arabic edition: RTL, Arabic type, and small refinements on the original design
+*/
+:root {
+  --font-serif: "Amiri", serif;
+  --font-book: "Noto Naskh Arabic", "Amiri", serif;
+  --book-line: 26px;
+  --colour-accent: darkred;
+}
+
+/* the English story keeps the original's type */
+[dir="ltr"] {
+  --font-serif: "Lora", serif;
+  font-family: var(--font-serif);
+}
+
+body {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+::selection {
+  background-color: rgba(139, 0, 0, 0.15);
+}
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: color 75ms ease-in-out;
+}
+
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--colour-accent);
+  outline-offset: 2px;
+}
+
+nav {
+  align-items: baseline;
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+
+nav h1 {
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+nav h1 a {
+  text-decoration: none;
+}
+
+nav .Links {
+  flex-wrap: wrap;
+  column-gap: 14px;
+}
+
+nav .Links > * + * {
+  margin-left: 0;
+}
+
+nav .Links a[aria-current="page"] {
+  color: var(--colour-accent);
+}
+
+footer {
+  font-size: 15px;
+}
+
+footer .epigraph {
+  text-align: left;
+  font-style: italic;
+}
+
+.BodyStyle {
+  text-align: right;
+  hyphens: none;
+}
+
+.BodyStyle h2 {
+  font-size: 20px;
+  margin-top: 28px;
+}
+
+.BodyStyle ul,
+.BodyStyle ol {
+  padding-left: 0;
+  padding-right: 1.5em;
+}
+
+.BodyStyle li + li {
+  margin-top: 6px;
+}
+
+/*
+  The original opens a paragraph with a blackletter drop cap. Arabic letters
+  join, so a floated first letter would break the word: the opening words
+  carry the red instead.
+*/
+[dir="rtl"] .BodyStyle p.initial:first-letter {
+  float: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+[dir="rtl"] .BodyStyle p.initial > span:first-child {
+  font-variant: normal;
+  margin-left: 0;
+  color: var(--colour-accent);
+  font-size: 1.3em;
+}
+
+.StoryNote {
+  max-width: 60ch;
+  margin: 0 auto 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--colour-border);
+}
+
+.ProseStyle[dir="ltr"] {
+  font-size: 14px;
+}
+
+.ErrorPage {
+  min-height: 30vh;
+}
+
+.super {
+  font-family: var(--font-mono);
+}
+
+/* book page */
+.PageInfo {
+  align-items: baseline;
+}
+
+.PageInfo p {
+  font-family: var(--font-book);
+  font-size: 15px;
+  color: var(--colour-grey);
+}
+
+.PageActions button {
+  font-size: 15px;
+}
+
+.PageContent {
+  grid-template-columns: 30px max-content;
+  column-gap: 8px;
+  overflow: visible;
+}
+
+.PageContent .Lines {
+  left: auto;
+  right: 0;
+  line-height: var(--book-line);
+}
+
+.PageContent pre {
+  font-family: var(--font-book);
+  font-size: 16px;
+  line-height: var(--book-line);
+  direction: rtl;
+  text-align: right;
+  overflow: visible;
+}
+
+.PageContent strong {
+  background-color: #fff27a;
+  box-shadow: 0 0 0 2px #fff27a;
+  border-radius: 1px;
+}
+
+.PageContent mark {
+  background-color: rgba(255, 0, 0, 0.12);
+  outline: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 2px;
+  color: inherit;
+  animation: mark-in 200ms ease-out;
+}
+
+@keyframes mark-in {
+  from {
+    background-color: rgba(255, 0, 0, 0.35);
+  }
+}
+
+.PageNavigation a {
+  white-space: nowrap;
+}
+
+.PageNavigation a:last-child {
+  text-align: left;
+}
+
+.PageNavigation .PageSelector select {
+  background-position: 0% 50%;
+  margin-left: 0;
+  margin-right: 5px;
+  padding: 2px 5px 2px 16px;
+}
+
+/* forms */
+button {
+  font-size: 16px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.SearchForm textarea {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.SearchForm textarea,
+.BrowseForm textarea,
+.BrowseForm .Numbers input {
+  background-color: #fffdf8;
+  transition: border-color 75ms ease-in-out;
+}
+
+.SearchForm textarea:focus,
+.BrowseForm textarea:focus,
+.BrowseForm .Numbers input:focus {
+  border-color: var(--colour-grey);
+}
+
+.SearchForm .ModeSelection {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 4px;
+}
+
+.SearchForm .ModeSelection label {
+  margin-right: 0;
+  cursor: pointer;
+}
+
+.SearchForm .ModeSelection input {
+  margin-right: 0;
+  margin-left: 5px;
+  accent-color: var(--colour-accent);
+}
+
+.SearchForm .Status {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--colour-light-grey);
+}
+
+.SearchForm .Status.Error {
+  color: var(--colour-accent);
+}
+
+.BrowseForm label > p {
+  margin-bottom: 4px;
+}
+
+.BrowseForm label span {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 480px) {
+  .BrowseForm .Numbers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.Librarian {
+  @media screen and (min-width: 590px) {
+    float: left;
+    margin-left: 0;
+    margin-right: 15px;
+  }
+}
+
+.BrowseForm textarea::placeholder,
+.SearchForm textarea::placeholder {
+  font-family: var(--font-serif);
+  font-size: 16px;
+}
+
+/* examples: each one a library catalogue card */
+.Examples {
+  margin-top: 30px;
+}
+
+.Example {
+  position: relative;
+  background-color: #fffcf5;
+  border: 1px solid var(--colour-border-dark);
+  border-radius: 3px;
+  padding: 22px 24px 16px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), 0 8px 24px -16px rgba(80, 50, 20, 0.35);
+}
+
+/* a thin inner rule, like the frame printed on an old index card */
+.Example::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid var(--colour-border);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.Example + .Example {
+  margin-top: 24px;
+}
+
+/* a nav, so undo the site menu's spread-out layout */
+nav.Categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin: 26px 0 6px;
+}
+
+.Categories a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 3px 12px;
+  border: 1px solid var(--colour-border-dark);
+  border-radius: 999px;
+  background-color: #fffcf5;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.Categories a:hover {
+  border-color: var(--colour-accent);
+}
+
+.Categories .Count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--colour-light-grey);
+}
+
+.Category {
+  scroll-margin-top: 16px;
+}
+
+.CategoryTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 36px 0 -12px;
+  font-size: 20px;
+  color: var(--colour-grey);
+}
+
+.CategoryTitle::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--colour-border-dark);
+}
+
+.Example h3 {
+  font-size: 26px;
+  line-height: 1.4;
+  color: var(--colour-accent);
+}
+
+.ExampleLead {
+  color: var(--colour-grey);
+}
+
+.Tiles {
+  display: grid;
+  grid-template-columns: 2.2fr repeat(3, 1fr) 1.6fr;
+  gap: 8px;
+  margin: 16px 0;
+
+  @media screen and (max-width: 639px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.Tiles > div {
+  text-align: center;
+  padding: 8px 6px 6px;
+  border: 1px solid var(--colour-border);
+  border-radius: 2px;
+  background-color: var(--colour-bg);
+}
+
+@media screen and (max-width: 639px) {
+  .Tiles .RoomTile {
+    grid-column: 1 / -1;
+  }
+}
+
+.Tiles dt {
+  font-size: 13px;
+  color: var(--colour-light-grey);
+}
+
+.Tiles dd {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--colour-accent);
+  white-space: nowrap;
+}
+
+.Tiles .RoomTile dd .code {
+  font-size: 14px;
+  color: var(--colour-fg);
+  background: none;
+  padding: 0;
+}
+
+.Tiles .RoomTile dd {
+  line-height: 30px;
+}
+
+.Tiles .PagesTile dd {
+  font-family: var(--font-serif);
+  font-size: 18px;
+}
+
+.Tiles .PagesTile bdi {
+  font-family: var(--font-mono);
+  font-size: 20px;
+}
+
+.ExampleActions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+
+  @media screen and (min-width: 640px) {
+    grid-template-columns: 1.3fr 1fr 1fr;
+  }
+}
+
+/* books of several volumes fold their volumes away */
+.Volumes {
+  margin: 16px 0;
+  border: 1px solid var(--colour-border);
+  border-radius: 2px;
+  background-color: var(--colour-bg);
+}
+
+.Volumes summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.Volumes summary::-webkit-details-marker {
+  display: none;
+}
+
+.Volumes summary:hover .Toggle {
+  color: var(--colour-accent);
+}
+
+.VolumesCount {
+  font-size: 15px;
+}
+
+.Toggle {
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  white-space: nowrap;
+}
+
+.Toggle::before {
+  content: "اعرض المجلدات";
+}
+
+.Volumes[open] .Toggle::before {
+  content: "أخف المجلدات";
+}
+
+.Volumes[open] summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+
+.Volumes .Tiles {
+  margin: 8px 14px 14px;
+}
+
+.Volumes .Tiles > div {
+  background-color: #fffcf5;
+}
+
+.VolumeHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 12px 14px 0;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.VolumeLinks {
+  display: flex;
+  gap: 14px;
+  font-size: 14px;
+}
+
+.VolumeLinks a {
+  font-weight: normal;
+}
+
+.ExampleActions.Multi {
+  @media screen and (min-width: 640px) {
+    grid-template-columns: 1.3fr 1fr;
+  }
+}
+
+.ExampleActions button {
+  font-weight: normal;
+  font-size: 15px;
+  padding: 7px 10px;
+}
+
+.ExampleActions button.Primary {
+  font-weight: bold;
+  color: var(--colour-bg);
+  background-color: var(--colour-accent);
+  border-color: #6d0000;
+}
+
+.ExampleActions button.Primary:hover {
+  color: var(--colour-bg);
+  background-color: #6d0000;
+}
+
+.ExampleFoot {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--colour-light-grey);
+}
+
+.ExampleFoot a {
+  color: var(--colour-grey);
+}
+
+/* page.html: the page is computed in the browser */
+.PageStatus {
+  margin-bottom: 14px;
+  font-size: 15px;
+  color: var(--colour-grey);
+}
+
+.PageStatus.Error {
+  color: var(--colour-accent);
+}
+
+.PageContent pre.Loading {
+  opacity: 0.35;
+  min-height: calc(40 * var(--book-line));
+  transition: opacity 150ms ease-in-out;
+}
+
+.PageActions .Button {
+  font-weight: normal;
+}
+
+.ShareNote {
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--colour-light-grey);
+}

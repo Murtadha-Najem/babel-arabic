@@ -4,7 +4,6 @@
   A complete Library of Babel in ~300 LOC
 */
 
-import fs from "fs";
 import { GMPFunctions, mpz_ptr } from "gmp-wasm";
 import {
   ALPHA,
@@ -14,18 +13,20 @@ import {
   PAGES,
   BOOK_LENGTH,
   PAGE_LENGTH,
+  DIGITS,
 } from "./constants";
 
 /*
-  Pre-compute content char <-> base32 maps
+  Pre-compute content char <-> GMP digit maps. JS toString() stops at base 36,
+  so the digits come from GMP's own alphabet instead.
 */
 const NUM_MAP = ALPHA.split("").reduce((acc, char, index) => {
-  acc[index.toString(ALPHA.length)] = char; // ALPHA[parseInt(char, ALPHA.length)]
+  acc[DIGITS[index]] = char;
   return acc;
 }, {} as Record<string, string>);
 
 const CHAR_MAP = ALPHA.split("").reduce((acc, char, index) => {
-  acc[char] = index.toString(ALPHA.length); // ALPHA.indexOf(char)
+  acc[char] = DIGITS[index];
   return acc;
 }, {} as Record<string, string>);
 
@@ -43,7 +44,7 @@ async function getSequentialContentNumberFromIdentifier(
   binding.mpz_set_string(intRoom, room, 32);
 
   if (binding.mpz_cmp_ui(intRoom, 1) < 0) {
-    throw new Error("Room cannot be smaller than 1");
+    throw new Error("رقم الغرفة لا يمكن أن يكون أصغر من 1.");
   }
 
   const totalRooms = binding.mpz_t();
@@ -53,27 +54,27 @@ async function getSequentialContentNumberFromIdentifier(
   binding.mpz_tdiv_q_ui(totalRooms, totalRooms, BOOKS * SHELVES * WALLS);
 
   if (binding.mpz_cmp(intRoom, totalRooms) > 0) {
-    throw new Error("Room is too large");
+    throw new Error("رقم الغرفة أكبر من عدد غرف المكتبة.");
   }
 
   const parsedWall = Number(wall);
   if (parsedWall < 1 || parsedWall > WALLS) {
-    throw new Error("Wall must be between 1 and 4");
+    throw new Error("رقم الجدار يجب أن يكون بين 1 و4.");
   }
 
   const parsedShelf = Number(shelf);
   if (parsedShelf < 1 || parsedShelf > SHELVES) {
-    throw new Error("Shelf must be between 1 and 5");
+    throw new Error("رقم الرف يجب أن يكون بين 1 و5.");
   }
 
   const parsedBook = Number(book);
   if (parsedBook < 1 || parsedBook > BOOKS) {
-    throw new Error("Book must be between 1 and 32");
+    throw new Error("رقم الكتاب يجب أن يكون بين 1 و32.");
   }
 
   const parsedPage = Number(page);
   if (parsedPage < 1 || parsedPage > PAGES) {
-    throw new Error("Page must be between 1 and 410");
+    throw new Error("رقم الصفحة يجب أن يكون بين 1 و410.");
   }
 
   const pBooks = parsedBook;
@@ -290,7 +291,7 @@ export async function lookupContent(
   const hash = new Array(BOOK_LENGTH).fill(CHAR_MAP[" "]);
 
   for (let i = 0; i < content.length; i++) {
-    hash[i] = CHAR_MAP[content[i]];
+    hash[i] = CHAR_MAP[content[i]] ?? CHAR_MAP[" "];
   }
 
   const seqNumber = binding.mpz_t();
@@ -345,14 +346,16 @@ export async function getRandomIdentifier(
 }
 
 /*
-  Read from `numbers` file and initialise mpz_t constants.
+  Initialise the mpz_t constants from the text of the `numbers` file.
 */
-export async function initialiseNumbers(binding: GMPFunctions): Promise<{
+export async function initialiseNumbers(
+  binding: GMPFunctions,
+  nums: string
+): Promise<{
   N: mpz_ptr;
   C: mpz_ptr;
   I: mpz_ptr;
 }> {
-  const nums = fs.readFileSync("./numbers", "utf8");
   const [N_STR, C_STR, I_STR] = nums.split("\n");
 
   const N = binding.mpz_t();

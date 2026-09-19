@@ -1,132 +1,71 @@
 doctype html
-html(lang="en")
+html(lang="ar", dir="rtl")
     include includes/head.pug
-    +seo("How does it work? — About the Library", "The Library of Babel is a fictional library that contains every book that has ever been written, and every book that ever will be written. But how does it work? What is the algorithm?")
+    +seo("كيف تعمل المكتبة؟", "مكتبة بابل تحتوي كل كتاب يمكن أن يُكتب بالحروف العربية. كيف يحدث ذلك من غير أن يُخزَّن كتاب واحد؟")
 
     body
         include includes/nav.pug
 
         main.BodyStyle
-            img.Banner(src="/image/study-2.png", alt="A pencil drawing of a man in a hooded robe standing next to large shelves of books")
+            img.Banner(src="image/study-2.png", alt="رسم بالقلم لرجل بعباءة يقف قرب رفوف كتب عالية")
 
-            h2 What is the Library of Babel?
+            h2 ما مكتبة بابل؟
             p.initial
-                span The
+                span مكتبة
                 |
-                | Library of Babel is a fictional library that contains every possible unique book of 1,312,000 characters. Each book has 410 pages of 40 lines of 80 characters each. 410 × 40 × 80 = 1,312,000. As each book consists of a combination of the same 32 characters, the total number of unique books is
+                | فيها كل كتاب ممكن طوله ١٬٣١٢٬٠٠٠ حرف: ٤١٠ صفحات، في كل صفحة ٤٠ سطرا، في كل سطر ٨٠ حرفا. ولأن كل حرف واحد من ٤٢ رمزا، فعدد الكتب المختلفة هو
                 |
                 |
-                span.nobreak 32
+                span.nobreak(dir="ltr") 42
                     span.super 1,312,000
-                | . For comparison, it is estimated that there are around
+                | ، أي قرابة
                 |
                 |
-                span.nobreak 10
+                span.nobreak(dir="ltr") 10
+                    span.super 2,129,703
+                | . وللمقارنة، عدد الذرات في الكون المرئي يقدَّر بنحو
+                |
+                |
+                span.nobreak(dir="ltr") 10
                     span.super 80
-                |
-                | atoms in the observable universe.
-            p It contains every book that has ever been written, and every book that ever will be written.
-            p You should read the
-                |
-                |
-                a(href="/") home page
-                |
-                | before you continue, if you haven’t already.
-
-            h2 How does it work?
-            p Most importantly, the library, and it’s books, are not
-                |
-                |
-                em stored
-                |
-                | anywhere — more on that below. Instead, a book is
-                |
-                |
-                em generated
-                |
-                | by a mathematical function when you view it. Once you view it, it is still not stored anywhere — the same way that by computing 2 × 5, the resulting 10 is not being stored anywhere, it is simply the output of the function. The next person to visit that same book will compute the same function again, and get the same answer.
-            p In the most simple terms:
-            ol
-                li Each book is given a numerical index. The first book on the first shelf is book 1, the first book on the second shelf is 33 and so on, until the last book in the entire library — which has the index
-                    |
-                    |
-                    span.nobreak 32
-                        span.super 1,312,000
-                    | .
-                li This (usually very large) number is run through a mathematical function to produce another unique number of 1,312,000 digits, which we represent in base-32 (we generally count in base-10, e.g. 0 through 9. Base-32 just means we count with more numerals, in this case 0-9 and then A-V).
-                li Each digit of the base-32 result is mapped to the character at that position in the limited 32 character alphabet (0 → a, 1 → b, ...) to produce the content of that book.
-            p Crucially, the mathematical function is reversible meaning that we can instead give it the contents of a book and work backwards determine the numerical index of the book that it appears in.
-            p Once a book is generated from it’s index, it is split up and displayed page by page. Each page is given an identifier derived from the numerical index, in the format
-                |
-                |
-                span.code room.wall.shelf.book.page
-                |
-                | e.g.
-                |
-                span.code 1.2.3.4.5
-                | . This is used in the URL of that page.
-            p For a more detailed explanation of the mathematical functions used and to view the source code, please see the
-                |
-                |
-                a(href="https://github.com/tdjsnelling/babel", target="_blank") GitHub repository
                 | .
 
-            h2 How do I know it’s not fake? Is it just creating pages with my search terms and saving them so I can see them again later?
-            p It is easy to assume that this website just takes whatever text you search for, inserts it into a random page, and saves that page on disk so that you can find it again at a later date. Similarly with pages of gibberish, what’s to say they aren’t just generated randomly when you request them and saved for later?
-            p Building a Library of Babel this way would require unobtainable amounts of storage. A single book’s content takes up 1,312,000 bytes (1.31 MB), with a single byte per ASCII character. 1,312,000 bytes multiplied by
-                |
-                |
-                span.nobreak 32
-                    span.super 1,312,000
-                |
-                | unique books gives us a total size of
-                |
-                |
-                span.nobreak 1.753×10
-                    span.super 1,974,750
-                |
-                | TB — an infeasible amount of data to store, to say the very least.
-            p Thus to build a virtual Library of Babel, we have to use a method that doesn’t require any storage. Books are generated on the fly based on their numerical index, and the same index will continue to generate the same book forever, unless the algorithm is changed.
+            h2 أين تُخزَّن الكتب؟
+            p لا تُخزَّن في أي مكان. الكتاب يُحسب بدالة رياضية لحظة فتحه، ثم يُنسى. كما أن حاصل ضرب ٢ في ٥ لا يحتاج إلى أن يُحفظ في مكان ما حتى يبقى ١٠، يحسب الزائر التالي الدالة نفسها فيحصل على الكتاب نفسه حرفا بحرف.
 
+            h2 كيف تُحسب؟
+            ol
+                li لكل كتاب رقم تسلسلي. الكتاب الأول على الرف الأول رقمه ١، والكتاب الأول على الرف الثاني رقمه ٣٣، وهكذا حتى آخر كتاب في المكتبة.
+                li يُضرب هذا الرقم في عدد ثابت ضخم، ويؤخذ باقي قسمته على عدد ثابت آخر. الناتج رقم جديد من ١٬٣١٢٬٠٠٠ خانة، مكتوب بنظام عد أساسه ٤٢.
+                li كل خانة من الناتج تقابل رمزا من الرموز الاثنين والأربعين: الصفر يقابل «ا»، والواحد يقابل «ب»، وهكذا. والنتيجة هي نص الكتاب.
+            p هذه العملية قابلة للعكس. إذا أعطيتها نصا حوّلته إلى رقم، ثم ضربته في معكوس العدد الثابت، فخرج رقم الكتاب الذي يحتوي هذا النص. هذا ما يحدث حين تبحث.
+            p عنوان كل صفحة مشتق من رقم كتابها، بالصيغة
+                |
+                |
+                span.code(dir="ltr") room.wall.shelf.book.page
+                | ، مثل
+                |
+                span.code(dir="ltr") 1.2.3.4.5
+                | .
 
-            h2 The page URLs seem quite short. How can these possibly map to so many unique books?
-            p Well spotted. On this website, the room identifiers are represented as
-                |
-                |
-                a(href="https://en.wikipedia.org/wiki/SHA-2", target="_blank") SHA-256 hashes
-                | . The
-                |
-                em actual
-                |
-                | room identifiers get incredibly long, up to roughly a million characters. This makes them much too long to be used in URLs, so instead a ‘bookmark’ is created and stored for the room in the form of a hash when it is first visited. This hash is used in place of the room identifier in the page URL.
-            p However, there are orders of magnitude more possible room identifiers than there are possible hashes. In theory, eventually when enough rooms are discovered there will be collisions (2 inputs map to the same output hash) and they will start to be overwritten as new, undiscovered rooms are accessed for the first time. In reality, this limit will never be reached.
+            h2 كيف أعرف أن البحث لا يزوّر النتيجة؟
+            p الظن الأول أن الموقع يأخذ ما كتبته، ويضعه في صفحة عشوائية، ويحفظها لتجدها لاحقا. لكن كتابا واحدا يشغل أكثر من مليون حرف، وحفظ كل الكتب يحتاج إلى مساحة تفوق كل ما في الكون من مادة. لا توجد قاعدة بيانات للكتب هنا أصلا، والشيفرة كلها منشورة ويمكن التحقق منها.
 
-            h2 What makes this version of the Library different?
-            p As far as I am aware, this is the only implementation of the Library that contains every unique book, rather than just every unique page. This results in a much larger library, and means that you can search for content longer than a single page.
-            p This comes as a result of re-writing the calculations to use
+            h2 هل تتطابق مع النسخة الإنكليزية؟
+            p لا. هذه مكتبة أخرى بحروف أخرى، فنص بعينه يقع فيها في عنوان مختلف تماما عن عنوانه في
                 |
                 |
-                a(href="https://gmplib.org/", target="_blank") GMP
-                | , a powerful multiple precision arithmetic library for C/C++. Porting the original pure-JS core logic to use GMP allows for much faster and more efficient calculations, making working with the very large numbers required possible.
+                a(href="https://libraryofbabel.app", target="_blank") النسخة الإنكليزية
+                | .
 
-
-            h2 Where can I learn more about the Library of Babel?
-            p If you haven’t already read
+            h2 المصدر
+            p أعد هذه النسخة العربية
                 |
                 |
-                a(href="/pdf/Borges-The-Library-of-Babel.pdf", target="_blank") the story
+                a(href="https://github.com/murtadha203", target="_blank") مرتضى نجم
+                | ، وبناها على
                 |
-                | then start there! The website
-                |
-                a(href="https://libraryofbabel.info", target="_blank") libraryofbabel.info
-                |
-                | also contains lots of supplemental information and theory, as well as another (smaller) implementation of the library itself.
-
-            h2#donate How can I support the Library of Babel? Can I make a donation?
-            p Accessing the Library will of course be free forever. However, the website becomes increasingly more expensive to run as new rooms are discovered and more bookmarks are saved.
-            p I cover this cost from my own pocket, as this is a passion project of mine – but if you enjoy using the Library and would like to show your appreciation, I would be very grateful if you
-                |
-                |
-                a(href='https://paypal.me/tdjsnelling', target='_blank') bought me a coffee
+                a(href="https://github.com/tdjsnelling/babel", target="_blank") مشروع #[bdi Tom Snelling]
+                | ، وهي منشورة بالرخصة نفسها (GPL-3.0).
 
         include includes/footer.pug

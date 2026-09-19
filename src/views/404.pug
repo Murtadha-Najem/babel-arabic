@@ -1,0 +1,26 @@
+doctype html
+html(lang="ar", dir="rtl")
+    - const heading = "ضللت الطريق"
+    include includes/head.pug
+    +seo(heading)
+
+    body
+        include includes/nav.pug
+
+        main.BodyStyle.ErrorPage
+            p.initial
+                span= heading
+            p لا توجد صفحة بهذا العنوان. المكتبة فيها كل الكتب، لكن ليس كل الروابط.
+            p يمكنك أن تعود إلى
+                |
+                |
+                a(href="./") البداية
+                | ، أو تفتح
+                |
+                a(href="page.html#random") صفحة عشوائية
+                | ، أو
+                |
+                a(href="search.html") تبحث عن نص
+                | .
+
+        include includes/footer.pug

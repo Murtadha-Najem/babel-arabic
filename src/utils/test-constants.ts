@@ -1,10 +1,14 @@
+import fs from "fs";
 import { init as gmp_init } from "gmp-wasm";
 import { initialiseNumbers } from "../babel";
 
 (async () => {
   const { binding } = await gmp_init();
 
-  const { N, C, I } = await initialiseNumbers(binding);
+  const { N, C, I } = await initialiseNumbers(
+    binding,
+    fs.readFileSync("./numbers", "utf8")
+  );
 
   const input = binding.mpz_t();
   binding.mpz_init_set_ui(input, 1);

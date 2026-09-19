@@ -1,45 +1,36 @@
 {
-  "name": "babel",
+  "name": "babel-arabic",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "repository": "https://github.com/tdjsnelling/babel",
+  "repository": "https://github.com/murtadha203/babel-arabic",
   "author": "Tom Snelling <tomsnelling8@gmail.com>",
   "license": "GPL-3.0",
   "private": false,
   "scripts": {
-    "build": "tsc",
-    "dev": "concurrently --passthrough-arguments --kill-others \"yarn build --watch\" \"nodemon --enable-source-maps dist/src/index.js {1}\"",
-    "start": "node dist/src/index.js",
-    "migrate:s3": "node dist/src/tools/leveldb-to-s3.js",
+    "build": "tsc && node dist/src/build-site.js",
+    "examples": "python tools/wikisource.py",
+    "gen-constants": "tsc && node dist/src/utils/gen-constants.js",
     "lint": "eslint src"
   },
   "devDependencies": {
-    "@types/koa": "^2.14.0",
-    "@types/koa-bodyparser": "^4.3.12",
-    "@types/koa-static": "^4.0.4",
-    "@types/koa__router": "^12.0.4",
+    "@types/node": "^20.19.43",
+    "@types/pug": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
-    "concurrently": "^8.2.2",
+    "esbuild": "^0.28.2",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
+    "pug": "^3.0.4",
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.812.0",
-    "@koa/router": "^10.1.1",
-    "dotenv": "^16.0.3",
+    "@pdf-lib/fontkit": "^1.1.1",
     "gmp-wasm": "^1.1.0",
-    "koa": "^2.13.4",
-    "koa-bodyparser": "^4.4.0",
-    "koa-pug": "^5.0.0",
-    "koa-static": "^5.0.0",
-    "koa2-formidable": "^1.0.3",
-    "level": "^8.0.1",
-    "pdf-lib": "^1.17.1",
-    "popular-english-words": "^1.0.2"
-  }
+    "pdf-lib": "^1.17.1"
+  },
+  "description": "An Arabic Library of Babel that runs entirely in the browser.",
+  "contributors": [
+    "Murtadha Najem (https://github.com/murtadha203)"
+  ]
 }

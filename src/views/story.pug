@@ -1,12 +1,17 @@
 doctype html
-html(lang="en")
+html(lang="ar", dir="rtl")
     include includes/head.pug
-    +seo("Read The Library of Babel", "The Library of Babel is a fictional library that contains every book that has ever been written, and every book that ever will be written. But how does it work? What is the algorithm?")
+    +seo("نص قصة مكتبة بابل", "قصة خورخي لويس بورخيس عن مكتبة تحتوي كل كتاب ممكن، بالترجمة الإنكليزية.")
 
     body
         include includes/nav.pug
 
-        main.ProseStyle
+        div.StoryNote.BodyStyle
+            p.initial
+                span هذا نص القصة
+                |
+                | بالترجمة الإنكليزية كما نشره المشروع الأصلي. يروي فيه أمين مكتبة عجوز كيف يعيش الناس داخل مكتبة لا نهاية لها، يبحثون بين كتب لا معنى لأغلبها عن الكتاب الذي يفسر كل شيء. والفكرة التي بُنيت عليها هذه النسخة العربية وردت في القصة نفسها: المكتبة تحتوي كل ترتيب ممكن للحروف، فلا يغيب عنها كتاب.
+        main.ProseStyle(lang="en", dir="ltr")
             h2 The Library of Babel
             h3 By Jorge Luis Borges
             h4  By this art you may contemplate the variation of the 23 letters....

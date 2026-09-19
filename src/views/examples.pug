@@ -1,0 +1,100 @@
+doctype html
+mixin tiles(volume)
+    dl.Tiles
+        div.RoomTile
+            dt الغرفة
+            dd
+                span.code(dir="ltr", title=`رقم من ${volume.room.length.toLocaleString("en")} خانة`)= `${volume.room.slice(0, 8)}...${volume.room.slice(-8)}`
+        div
+            dt الجدار
+            dd= volume.wall
+        div
+            dt الرف
+            dd= volume.shelf
+        div
+            dt الكتاب
+            dd= volume.book
+        div.PagesTile
+            dt الصفحات
+            dd
+                bdi 1
+                |  إلى 
+                bdi= volume.lastPage
+
+html(lang="ar", dir="rtl")
+    include includes/head.pug
+    +seo("أمثلة من المكتبة", "نصوص حقيقية كاملة وجدناها في مكتبة بابل، مع مكانها بالضبط: الغرفة والجدار والرف والكتاب والصفحة.")
+
+    body(data-page="examples")
+        include includes/nav.pug
+
+        main
+            div.BodyStyle
+                p.initial
+                    span نصوص حقيقية
+                    |
+                    | وجدناها كاملة بين رفوف المكتبة. كل نص يبدأ من الصفحة الأولى في كتابه، وما يبقى من الكتاب بعده مسافات. والنص الذي لا يتسع له كتاب واحد يتوزع على مجلدات، كل مجلد في غرفة لا علاقة لها بالأخرى.
+
+            - const ordinals = ["الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس", "السابع", "الثامن", "التاسع", "العاشر", "الحادي عشر", "الثاني عشر"]
+            - const order = ["كتب دينية", "شعر", "أدب ونثر", "فلسفة وفكر", "تاريخ"]
+            - const names = [...order, ...new Set(examples.map((e) => e.category || "أخرى").filter((c) => !order.includes(c)))]
+            - const groups = names.map((name) => ({ name, items: examples.filter((e) => (e.category || "أخرى") === name) })).filter((g) => g.items.length)
+
+            nav.Categories(aria-label="التصنيفات")
+                each group, g in groups
+                    a(href=`#cat-${g + 1}`)
+                        | #{group.name}
+                        span.Count= group.items.length
+
+            each group, g in groups
+              section.Category(id=`cat-${g + 1}`)
+                h2.CategoryTitle= group.name
+                div.Examples
+                  each example in group.items
+                    article.Example
+                        h3= example.title
+                        p.ExampleLead= example.description
+
+                        - const multi = example.volumes.length > 1
+                        if multi
+                            - const n = example.volumes.length
+                            - const pages = (n - 1) * 410 + example.volumes[n - 1].lastPage
+                            details.Volumes
+                                summary
+                                    span.VolumesCount
+                                        | #{n} #{n <= 10 ? "مجلدات" : "مجلدا"}، 
+                                        bdi= pages.toLocaleString("en")
+                                        |  صفحة، كل مجلد في غرفة
+                                    span.Toggle
+                                each volume, v in example.volumes
+                                    div.VolumeHead
+                                        span المجلد #{ordinals[v] || v + 1}
+                                        span.VolumeLinks
+                                            a(href=`page.html#x-${example.slug}-${v + 1}.${volume.wall}.${volume.shelf}.${volume.book}.1`) افتح
+                                            a(href=`page.html#x-${example.slug}-${v + 1}.${volume.wall}.${volume.shelf}.${volume.book}.1!pdf`) PDF
+                                    +tiles(volume)
+
+                            div.ExampleActions.Multi
+                                a.noexternal(href=`page.html#x-${example.slug}-1.${example.volumes[0].wall}.${example.volumes[0].shelf}.${example.volumes[0].book}.1`)
+                                    button.Button.Primary افتح المجلد الأول
+                                button.Button(type="button", data-slug=example.slug, data-addresses=JSON.stringify(example.volumes.map((vol, i) => ({ file: `${example.slug}-${i + 1}`, place: `${vol.wall}.${vol.shelf}.${vol.book}` })))) نزّل العناوين الكاملة
+                        else
+                            +tiles(example.volumes[0])
+                            div.ExampleActions
+                                a.noexternal(href=`page.html#x-${example.slug}-1.${example.volumes[0].wall}.${example.volumes[0].shelf}.${example.volumes[0].book}.1`)
+                                    button.Button.Primary افتح الكتاب
+                                button.Button(type="button", data-slug=example.slug, data-addresses=JSON.stringify(example.volumes.map((vol, i) => ({ file: `${example.slug}-${i + 1}`, place: `${vol.wall}.${vol.shelf}.${vol.book}` })))) نزّل العنوان الكامل
+                                a.noexternal(href=`page.html#x-${example.slug}-1.${example.volumes[0].wall}.${example.volumes[0].shelf}.${example.volumes[0].book}.1!pdf`)
+                                    button.Button نزّل الكتاب (PDF)
+
+                        p.ExampleFoot المصدر:
+                            |
+                            |
+                            if example.sourceUrl
+                                a(href=example.sourceUrl, target="_blank")= example.source
+                            else
+                                = example.source
+
+        include includes/footer.pug
+
+    script(type="module", src=`js/app.js?v=${assetVersion}`)

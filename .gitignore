@@ -5,3 +5,5 @@ node_modules
 .env
 dist
 leveldb
+tools/.cache
+site

@@ -1,6 +1,6 @@
 import fs from "fs";
 import { init as gmp_init, GMPFunctions, mpz_ptr } from "gmp-wasm";
-import { ALPHA, BOOK_LENGTH, BASE32_ALPHA, BASE32_LAST } from "../constants";
+import { ALPHA, BOOK_LENGTH, DIGITS, DIGITS_LAST } from "../constants";
 
 async function isCoprime(binding: GMPFunctions, a: mpz_ptr, b: mpz_ptr) {
   const gcd = binding.mpz_t();
@@ -48,14 +48,13 @@ async function findModularInverse(
   binding.mpz_init(N);
   binding.mpz_set_string(
     N,
-    new Array(BOOK_LENGTH).fill(BASE32_LAST).join(""),
+    new Array(BOOK_LENGTH).fill(DIGITS_LAST).join(""),
     ALPHA.length
   );
 
-  let randomStartNum = BASE32_LAST;
+  let randomStartNum = DIGITS_LAST;
   for (let i = 1; i < BOOK_LENGTH; i++) {
-    randomStartNum +=
-      BASE32_ALPHA[Math.floor(Math.random() * BASE32_ALPHA.length)];
+    randomStartNum += DIGITS[Math.floor(Math.random() * DIGITS.length)];
   }
 
   const C = binding.mpz_t();

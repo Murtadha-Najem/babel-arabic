@@ -1,0 +1,155 @@
+[
+  {
+    "slug": "quran",
+    "title": "القرآن الكريم",
+    "file": "quran.txt",
+    "description": "كتاب الله، 114 سورة و6236 آية، بلا تشكيل.",
+    "source": "مشروع تنزيل (النسخة المبسطة بلا تشكيل)",
+    "sourceUrl": "https://tanzil.net",
+    "category": "كتب دينية"
+  },
+  {
+    "slug": "kalila-wa-dimna",
+    "title": "كليلة ودمنة",
+    "file": "kalila-wa-dimna.txt",
+    "description": "حكايات على ألسنة الحيوان نقلها ابن المقفع إلى العربية، في 19 بابا.",
+    "source": "ويكي مصدر",
+    "sourceUrl": "https://ar.wikisource.org/wiki/كليلة_ودمنة",
+    "category": "أدب ونثر"
+  },
+  {
+    "slug": "muqaddimah",
+    "title": "مقدمة ابن خلدون",
+    "file": "muqaddimah.txt",
+    "description": "كتاب ابن خلدون في التاريخ والعمران، يكاد يملأ كتابا كاملا من كتب المكتبة.",
+    "source": "ويكي مصدر",
+    "sourceUrl": "https://ar.wikisource.org/wiki/مقدمة_ابن_خلدون",
+    "category": "فلسفة وفكر"
+  },
+  {
+    "slug": "arbaun-nawawiyya",
+    "title": "الأربعون النووية",
+    "category": "كتب دينية",
+    "description": "أربعون حديثا ونيف جمعها الإمام النووي في أصول الدين.",
+    "file": "arbaun-nawawiyya.txt",
+    "source": "ويكي مصدر",
+    "sourceUrl": "https://ar.wikisource.org/wiki/الأربعون_النووية"
+  },
+  {
+    "slug": "muallaqat",
+    "title": "المعلقات العشر",
+    "category": "شعر",
+    "description": "أشهر قصائد العرب قبل الإسلام، لعشرة شعراء.",
+    "file": "muallaqat.txt",
+    "source": "ويكي مصدر",
+    "sourceUrl": "https://ar.wikisource.org/wiki/المعلقات"
+  },
+  {
+    "slug": "hayy-ibn-yaqzan",
+    "title": "حي بن يقظان",
+    "category": "فلسفة وفكر",
+    "description": "قصة ابن طفيل الفلسفية عن إنسان نشأ وحده على جزيرة فعرف الحقيقة بعقله.",
+    "file": "hayy-ibn-yaqzan.txt",
+    "source": "ويكي مصدر",
+    "sourceUrl": "https://ar.wikisource.org/wiki/حي_بن_يقظان"
+  },
+  {
+    "slug": "sahih-bukhari",
+    "title": "صحيح البخاري",
+    "category": "كتب دينية",
+    "description": "أصح كتب الحديث عند أهل السنة، جمعه الإمام البخاري.",
+    "file": "sahih-bukhari.txt",
+    "source": "ويكي مصدر",
+    "sourceUrl": "https://ar.wikisource.org/wiki/صحيح_البخاري"
+  },
+  {
+    "slug": "bukhala",
+    "title": "البخلاء",
+    "category": "أدب ونثر",
+    "description": "نوادر البخلاء وأخبارهم بقلم الجاحظ الساخر.",
+    "file": "bukhala.txt",
+    "source": "ويكي مصدر",
+    "sourceUrl": "https://ar.wikisource.org/wiki/البخلاء"
+  },
+  {
+    "slug": "bayan-wa-tabyin",
+    "title": "البيان والتبيين",
+    "category": "أدب ونثر",
+    "description": "كتاب الجاحظ في البلاغة والخطابة وأخبار البلغاء.",
+    "file": "bayan-wa-tabyin.txt",
+    "source": "ويكي مصدر",
+    "sourceUrl": "https://ar.wikisource.org/wiki/البيان_والتبيين"
+  },
+  {
+    "slug": "tahafut-al-tahafut",
+    "title": "تهافت التهافت",
+    "category": "فلسفة وفكر",
+    "description": "رد ابن رشد على الغزالي دفاعا عن الفلسفة.",
+    "file": "tahafut-al-tahafut.txt",
+    "source": "مشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/0600AH"
+  },
+  {
+    "slug": "diwan-mutanabbi",
+    "title": "ديوان المتنبي",
+    "category": "شعر",
+    "description": "شعر أبي الطيب المتنبي، مرتبا على مطالع القصائد كما في ويكي مصدر.",
+    "file": "diwan-mutanabbi.txt",
+    "source": "ويكي مصدر",
+    "sourceUrl": "https://ar.wikisource.org/wiki/مؤلف:المتنبي"
+  },
+  {
+    "slug": "risalat-al-ghufran",
+    "title": "رسالة الغفران",
+    "category": "أدب ونثر",
+    "description": "رحلة خيالية لأبي العلاء المعري إلى الجنة والنار يحاور فيها الشعراء.",
+    "file": "risalat-al-ghufran.txt",
+    "source": "ويكي مصدر",
+    "sourceUrl": "https://ar.wikisource.org/wiki/رسالة_الغفران"
+  },
+  {
+    "slug": "alf-layla",
+    "title": "ألف ليلة وليلة",
+    "category": "أدب ونثر",
+    "description": "حكايات شهرزاد كاملة، في طبعة بولاق كما نشرتها هنداوي.",
+    "file": "alf-layla.txt",
+    "source": "مشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/1300AH"
+  },
+  {
+    "slug": "tahafut-al-falasifa",
+    "title": "تهافت الفلاسفة",
+    "category": "فلسفة وفكر",
+    "description": "رد الغزالي على الفلاسفة في عشرين مسألة.",
+    "file": "tahafut-al-falasifa.txt",
+    "source": "ويكي مصدر ومشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/0525AH"
+  },
+  {
+    "slug": "bidaya-wa-nihaya",
+    "title": "البداية والنهاية",
+    "category": "تاريخ",
+    "description": "تاريخ ابن كثير من بدء الخلق إلى عصره، في أربعة عشر جزءا.",
+    "file": "bidaya-wa-nihaya.txt",
+    "source": "مشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/0775AH"
+  },
+  {
+    "slug": "aghani",
+    "title": "الأغاني",
+    "category": "أدب ونثر",
+    "description": "موسوعة أبي الفرج الأصفهاني في أخبار الشعراء والمغنين، في أربعة وعشرين جزءا.",
+    "file": "aghani.txt",
+    "source": "مشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/0375AH"
+  },
+  {
+    "slug": "mafatih-al-jinan",
+    "title": "مفاتيح الجنان",
+    "category": "كتب دينية",
+    "description": "كتاب الأدعية والزيارات للشيخ عباس القمي، بنصه المعرب.",
+    "file": "mafatih-al-jinan.txt",
+    "source": "مشروع OpenITI",
+    "sourceUrl": "https://github.com/OpenITI/1375AH"
+  }
+]

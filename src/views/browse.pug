@@ -1,64 +1,63 @@
 doctype html
-html(lang="en")
+html(lang="ar", dir="rtl")
     include includes/head.pug
-    +seo("Browse the Library", "Navigate to a specific room, wall, shelf, book and page of the Library.")
+    +seo("تصفح المكتبة", "اذهب إلى غرفة وجدار ورف وكتاب وصفحة بعينها داخل المكتبة.")
 
-    body
+    body(data-page="browse")
         include includes/nav.pug
 
         main
-            img.Banner(src="/image/shelves.png", alt="A pencil drawing of a man in a hooded robe standing next to large shelves of books")
+            img.Banner(src="image/shelves.png", alt="رسم بالقلم لرجل بعباءة يقف قرب رفوف كتب عالية")
 
             form#browse.BrowseForm
                 label
-                    p Room
-                    textarea(name="room", rows=2, required=true, placeholder="Enter an alphanumeric room identifier made up of the characters 0-9 and a-v.")
+                    p الغرفة
+                    textarea(name="room", rows=2, required=true, placeholder="رمز الغرفة: أرقام من 0 إلى 9 وحروف لاتينية من a إلى v")
 
                 div.Numbers
                     label
-                        p Wall
+                        p الجدار
                             |
                             |
-                            span 1-4
+                            span ١ إلى ٤
                         input(name="wall", type="number", min=1, max=4, value=1, required=true)
 
                     label
-                        p Shelf
+                        p الرف
                             |
                             |
-                            span 1-5
+                            span ١ إلى ٥
                         input(name="shelf", type="number", min=1, max=5, value=1, required=true)
 
                     label
-                        p Book
+                        p الكتاب
                             |
                             |
-                            span 1-32
+                            span ١ إلى ٣٢
                         input(name="book", type="number", min=1, max=32, value=1, required=true)
 
                     label
-                        p Page
+                        p الصفحة
                             |
                             |
-                            span 1-410
+                            span ١ إلى ٤١٠
                         input(name="page", type="number", min=1, max=410, value=1, required=true)
 
-                button Go
+                button اذهب
 
             div.Divider
-                p OR
+                p أو
 
             form#bookmark.BrowseForm
                 label
-                    p Upload a bookmark file
+                    p ارفع ملف علامة صفحة
                         |
                         |
-                        span You can download these when viewing a page
+                        span تنزّله من أي صفحة تقرؤها
                     input(type="file", name="bookmark", accept=".babel", multiple=false, required=true)
 
-                Button Go
+                Button اذهب
 
         include includes/footer.pug
 
-    script(src="/js/handleBrowseForm.js", type="text/javascript")
-    script(src="/js/handleBookmarkForm.js", type="text/javascript")
+    script(type="module", src=`js/app.js?v=${assetVersion}`)

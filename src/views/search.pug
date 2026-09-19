@@ -1,53 +1,50 @@
 doctype html
-html(lang="en")
+html(lang="ar", dir="rtl")
     include includes/head.pug
-    +seo("Search the Library", "Any text you can come up with will already have been written down, somewhere deep within the library. All that remains is to find it. Enter some text to search for it within the library.")
+    +seo("ابحث في المكتبة", "أي نص يخطر ببالك مكتوب سلفا في مكان ما داخل المكتبة. اكتبه هنا وستعرف أين هو.")
 
-    body
+    body(data-page="search")
         include includes/nav.pug
 
         main
             div(style="margin-bottom: 20px;")
                 div.SearchGrid
-                    img(src="/image/mucha-2.png", alt="A man in a hooded robe sat studying a book in the style of a woodcut printing")
+                    img(src="image/mucha-2.png", alt="رجل بعباءة ذات قلنسوة يقرأ كتابا، بأسلوب الحفر على الخشب")
 
                     div.BodyStyle
                         p.initial
-                            span Any
+                            span أي نص
                             |
-                            | text you can come up with has already been marked in ink, somewhere deep within the hexagonal galleries of the infinite library. All that remains is for you to seek out...
+                            | يخطر ببالك مكتوب سلفا بالحبر، في مكان ما بين الأروقة السداسية لهذه المكتبة. كل ما عليك هو أن تبحث عنه:
                         p
-                            em “...the detailed history of the future...”
+                            em اسمك، وتاريخ ميلادك.
                         p
-                            em “...the autobiographies of the archangels...”
+                            em بيت شعر تحفظه منذ الطفولة.
                         p
-                            em “...the faithful catalog of the Library...”
+                            em رسالة لم ترسلها قط.
                         p
-                            em “...the true story of your death...”
+                            em الفصل الأول من رواية لم تُكتب بعد.
                         p
-                            em “...the translation of every book into every language...”
-                        p
-                            em “...the interpolations of every book into all books...”
-                        p
-                            em “...the lost books of Tacitus...”
+                            em وصف دقيق لما سيحدث غدا، وألف وصف كاذب له.
 
             form.SearchForm
-                textarea(name="content", rows=10, required=true, placeholder="Enter up to 1,312,000 characters from a-z, comma, full-stop, exclamation mark, question mark, hyphen, or space. New lines are preserved in empty page and empty book modes.")
+                textarea(name="content", rows=10, required=true, placeholder="اكتب حتى ١٬٣١٢٬٠٠٠ حرف. الحروف المقبولة: الحروف العربية الثمانية والعشرون، والهمزات، والتاء المربوطة، والألف المقصورة، والفاصلة، والنقطة، وعلامتا الاستفهام والتعجب، والشرطة، والمسافة. التشكيل يُحذف تلقائيا.")
                 div.ModeSelection
                     label
                         input(type="radio", name="mode", value="empty", checked=true)
-                        | On an empty page
+                        | في صفحة فارغة
                     label
                         input(type="radio", name="mode", value="emptybook")
-                        | In an empty book
+                        | في كتاب فارغ
                     label
                         input(type="radio", name="mode", value="chars")
-                        | With random characters
+                        | بين حروف عشوائية
                     label
                         input(type="radio", name="mode", value="words")
-                        | With random English words
-                button Search
+                        | بين كلمات عربية عشوائية
+                p.Status(aria-live="polite")
+                button ابحث
 
         include includes/footer.pug
 
-    script(src="/js/handleSearchForm.js", type="text/javascript")
+    script(type="module", src=`js/app.js?v=${assetVersion}`)
