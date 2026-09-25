@@ -1,6 +1,6 @@
 # babel (Arabic edition)
 
-Arabic edition by [Murtadha Najem](https://github.com/murtadha203), built on [tdjsnelling/babel](https://github.com/tdjsnelling/babel) and released under the same licence (GPL-3.0).
+Arabic edition by [Murtadha Najem](https://github.com/Murtadha-Najem), built on [tdjsnelling/babel](https://github.com/tdjsnelling/babel) and released under the same licence (GPL-3.0).
 
 This fork writes the library in Arabic: 42 symbols (28 letters, ء آ أ إ ؤ ئ ة ى, ، . ؟ ! - and space), so there are 42^1,312,000 books. What changed from upstream:
 

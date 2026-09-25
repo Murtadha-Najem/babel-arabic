@@ -1,7 +1,7 @@
 {
   "name": "babel-arabic",
   "version": "1.0.0",
-  "repository": "https://github.com/murtadha203/babel-arabic",
+  "repository": "https://github.com/Murtadha-Najem/babel-arabic",
   "author": "Tom Snelling <tomsnelling8@gmail.com>",
   "license": "GPL-3.0",
   "private": false,
@@ -31,6 +31,6 @@
   },
   "description": "An Arabic Library of Babel that runs entirely in the browser.",
   "contributors": [
-    "Murtadha Najem (https://github.com/murtadha203)"
+    "Murtadha Najem (https://github.com/Murtadha-Najem)"
   ]
 }
